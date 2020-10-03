@@ -5,6 +5,12 @@
 
 using namespace std;
 
+bool is_bg_dark()
+{
+    string cmd = "diff ~/.config/termite/config ~/.config/termite/config.light";
+    return exec(cmd).size();
+}
+
 string get_battery()
 {
     string result = exec("acpi");
@@ -36,6 +42,12 @@ string get_light()
 {
     int percent = ceil(stof(exec("brillo -G")));
     return print(" " + to_string(percent) + "%", GREEN, "light");
+}
+
+string get_bg_color()
+{
+    string color = is_bg_dark() ? RED : GREEN;
+    return print("", color, "bg_color");
 }
 
 string get_keyboard_light()
@@ -135,4 +147,11 @@ void handle_keyboard_light(int button)
         exec_background("echo '0' > /sys/class/leds/dell::kbd_backlight/brightness");
     else
         exec_background("brillo -k -S 100");
+}
+
+void handle_bg_color(int button)
+{
+    string mode = is_bg_dark() ? "light" : "dark";
+    exec_background("cp ~/.config/termite/config." + mode + " ~/.config/termite/config");
+    exec_background("cp ~/.config/nvim/init.vim." + mode + " ~/.config/nvim/init.vim");
 }

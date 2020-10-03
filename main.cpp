@@ -22,6 +22,7 @@ int main()
     blocks.push_back(make_pair(make_pair(1, 10), get_temperature));
     blocks.push_back(make_pair(make_pair(1, 15), get_light));
     blocks.push_back(make_pair(make_pair(1, 15), get_night));
+    blocks.push_back(make_pair(make_pair(1, 20), get_bg_color));
     blocks.push_back(make_pair(make_pair(1, 15), get_keyboard_light));
     blocks.push_back(make_pair(make_pair(1, 10), get_sound));
     blocks.push_back(make_pair(make_pair(1, 20), get_dns));
@@ -74,6 +75,7 @@ void handle_input()
     handlers["vpn"] = handle_vpn;
     handlers["night"] = handle_night;
     handlers["keyboard_light"] = handle_keyboard_light;
+    handlers["bg_color"] = handle_bg_color;
 
     string line;
     bool first = true;

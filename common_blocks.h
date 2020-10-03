@@ -8,6 +8,7 @@
 std::string get_battery();
 std::string get_dns();
 std::string get_light();
+std::string get_bg_color();
 std::string get_keyboard_light();
 std::string get_sound();
 std::string get_temperature();
@@ -18,5 +19,6 @@ std::string get_night();
 void handle_sound(int button);
 void handle_night(int button);
 void handle_keyboard_light(int button);
+void handle_bg_color(int button);
 
 #endif /* COMMON_BLOCKS_H_ */
